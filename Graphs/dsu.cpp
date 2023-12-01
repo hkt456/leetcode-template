@@ -33,6 +33,25 @@ public:
         return find(x) == find(y);
     }
 
+    int largestComponentSize(int n) {
+        unordered_map<int, int> group;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            int rootI = find(i);
+            group[rootI]++;
+            ans = max(ans, group[rootI]);
+        }
+        return ans;
+    }
+
+    int numberOfConnectedComponents(int n) {
+        unordered_set<int> group;
+        for (int i = 0; i < n; i++) {
+            group.insert(find(i));
+        }
+        return group.size();
+    }
+
 private:
     vector<int> root;
     vector<int> rank;
